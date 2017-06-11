@@ -1,0 +1,126 @@
+html {
+    background-image: url("/public/img/background.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body{
+
+}
+
+a {
+    text-decoration:none;
+    color: white;
+}
+
+a:hover {
+    background-color:none;
+    text-decoration: none;
+    color: #169f84;                         
+}
+
+button {
+    text-decoration:none;
+    color: white;
+    background-color:transparent;
+    background-repeat:no-repeat;
+    border: none;
+    outline:none;
+    overflow: hidden;
+
+}
+
+button:hover {
+    background-color:none;
+    text-decoration: none;
+    color: #169f84;                         
+}
+button:focus {
+    outline:0;
+}
+
+
+#tudobem-wrapper{
+    position:absolute;
+    left: 50%;
+    top: 20%;
+    color: white;
+    font-family: "Helvetica", "Arial";
+    font-size: 25px;
+}
+
+#tudobem-title {
+    font-size:  200px;
+    margin-bottom: -15%;
+    padding-bottom: 2%;
+}
+
+#tudobem-menu {
+    position: relative;
+    font-size: 100%;
+    padding: 0;
+    margin-top:0;
+    width: auto;
+}
+#tudobem-menu li {
+    display: inline;
+    list-style-type: none;
+    padding-right: 5%;
+}
+#tudobem-menu li:after{
+    padding-left: 5%;
+    content:'\00B7';
+}
+#last {
+    padding-right: 0%!important;
+}
+#last:after {
+    padding-right: 0%!important;
+    padding-left: 0%!important;
+    content: ''!important;
+}
+
+#tudobem-about {
+    display: none;
+    color:black;
+    font-size: 15px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 3%;
+    margin: 0%;
+}
+
+p {
+    padding:0;
+    margin:0;
+}
+
+/* BOOKINGS  */
+#tudobem-dates {
+    display: none;
+    color: black;
+    font-size: 15px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 3%;
+    margin: 0%;
+}
+#tudobem-bookings {
+    max-height: 400px;
+    overflow: auto;
+}
+#tudobem-bookings li {
+    list-style-type: none;
+    padding-bottom: 2%;
+}
+#tudobem-booking li {
+    display: inline;
+    list-style-type: none;
+    padding-right: 2%;
+    margin: 0;
+}
+#tudobem-booking li:after{
+    padding-left: 2%;
+    content:'-';
+}

@@ -1,0 +1,29 @@
+extends layout
+
+block content
+        div(id='tudobem-wrapper')
+                div(class='tudobem-center' id='tudobem-title') MAGGIE
+                ul(class='tudobem-center' id='tudobem-menu')
+                        li 
+                                button(id='tudobem-click-about' class='hidden') ABOUT
+                        li 
+                                a(id='tudobem-click-sons',href='https://soundcloud.com/maggiemusique' title='vers Soundcloud') SONS
+                        li 
+                                button(id='tudobem-click-dates' class='hidden') DATES
+                        li(id='last')
+                                a(href='mailto:booking.maquerelle@gmail.com' title='email us !') BOOKING
+                div(class='tudobem-center' id='tudobem-about') 
+                        p Celle qui fait bouger les têtes, voyager les esprits et danser les gens
+                        p Tudobem music
+
+                div(class='tudobem-dates' id='tudobem-dates')
+                        h3 D A T E S
+                        ul(id='tudobem-bookings')
+                                each booking in bookings
+                                        li
+                                                ul(id='tudobem-booking')
+                                                        li= booking.Date
+                                                        li= booking.Nom
+                                                        li(id='last')= booking.Lieu
+block scripts
+        script(type='text/javascript' src='/public/js/maggie.js')
