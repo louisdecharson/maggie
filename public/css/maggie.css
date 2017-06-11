@@ -1,27 +1,20 @@
 html {
-    background-image: url("/public/img/background.jpg");
+    background: url("/public/img/background.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
 }
-
-body{
-
-}
-
 a {
     text-decoration:none;
     color: white;
 }
-
 a:hover {
     background-color:none;
     text-decoration: none;
     color: #169f84;                         
 }
-
 button {
     text-decoration:none;
     color: white;
@@ -32,7 +25,6 @@ button {
     overflow: hidden;
 
 }
-
 button:hover {
     background-color:none;
     text-decoration: none;
@@ -109,6 +101,7 @@ p {
 #tudobem-bookings {
     max-height: 400px;
     overflow: auto;
+    padding-left: 5%;
 }
 #tudobem-bookings li {
     list-style-type: none;

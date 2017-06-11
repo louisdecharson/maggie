@@ -1,4 +1,14 @@
 $(document).ready(function(){
+    var wd = $(window).width();
+    if (wd < 800) {
+        var fontsize = 200*wd/800;
+        $('#tudobem-title').css({'font-size':fontsize.toString()+"px"});
+        $('#tudobem-menu').css({'font-size':wd/800*100+"%"});
+        $('#tudobem-dates').css({'font-size':wd/600*15+"px"});
+        $('#tudobem-about').css({'font-size':wd/600*15+"px"});
+        $('#tudobem-title').width(0.95*wd);
+    }
+    
     var sum=0;
     $('#tudobem-menu li').each( function(){ sum += $(this).width(); });
     $('#tudobem-menu').width(sum);
