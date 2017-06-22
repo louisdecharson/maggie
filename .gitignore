@@ -1,3 +1,7 @@
 /node_modules
 .ipynb_checkpoints/
 *.ipynb
+/public/json/bookings.json
+/config/.env
+*.DS_Store
+npm-debug.log

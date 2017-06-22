@@ -87,13 +87,14 @@ button:focus {
 p {
     padding:0;
     margin:0;
+    font-size: 1.5vw;
 }
 
 /* BOOKINGS  */
 #tudobem-dates {
     display: none;
     color: black;
-    font-size: 1vw;
+    font-size: 1.2vw;
     background-color: rgba(255,255,255,0.8);
     padding: 1vw 1vw 1vw 1vw;
     margin: 0%;
@@ -116,4 +117,21 @@ p {
 #tudobem-booking li:after{
     padding-left: 1vw;
     content:'-';
+}
+
+/* MANAGE BOOKINGS */
+.tudobem-bouton{
+    margin-right: 3%;
+}
+
+.bookings-td{
+    white-space: nowrap;
+}
+.login {
+    background-color: rgba(255,255,255,0.5);
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    width: 300px;
+    padding: 20px;
 }

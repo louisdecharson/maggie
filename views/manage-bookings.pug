@@ -1,0 +1,37 @@
+extends layout
+
+block content
+        div(style='padding: 3%;')
+                h1 &#9937; Espace administrateur &#9937;
+                hr
+                h3 Ajouter une nouvelle date
+                form(action=newdate method='POST' enctype='application/json')
+                        div(class='form-group')
+                                label(for='date') Date
+                                input(type='date' class='form-control' placeholder='Date - format: MM/DD/YY' name='newdate[Date]')
+                        div(class='form-group')
+                                label(for='title') Titre
+                                input(type='title' class='form-control' placeholder='Nom' name='newdate[Nom]')
+                        div(class='form-group')
+                                label(for='lieu') Lieu
+                                input(type='astract' class='form-control' placeholder='Lieu' name='newdate[Lieu]')
+                        button(type="submit" class="btn btn-primary") Ajouter une nouvelle date
+                hr
+                h3 Dates
+                form(method='POST' enctype='application/json')
+                        table
+                                thead
+                                        tr
+                                                th Date
+                                                th Nom
+                                                th Lieu
+                                                th Supprimer
+                                tbody
+                                        each booking in bookings 
+                                                tr  
+                                                        td= booking.Date
+                                                        td= booking.Nom
+                                                        td= booking.Lieu
+                                                        td(class="bookings-td")                                                              
+                                                                  button(class="btn btn-danger btn-sm tudobem-bouton" action='delete' name="delete" value=booking.timestamp) supprimer
+
