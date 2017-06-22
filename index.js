@@ -1,3 +1,7 @@
+// Copyright (C) 2017 Louis de Charsonville
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the MIT License
+
 
 
 const express = require('express'),
@@ -65,19 +69,6 @@ function requiredAuthentication(req, res, next) {
         res.redirect('/login');
     }
 }
-
-// SOUNDCLOUD
-// const soundUrl  = "https://soundcloud.com/maggiemusique";
-// request(soundUrl,function(err,res,html) {
-//     if (!err && res.statusCode == 200) {
-//         var $ = cheerio.load(html);
-//         var desc = $('.infoStats__description').text();
-//         console.log(desc);
-//     } else {
-//         console.log(res.statusCode);
-//         console.log('No internet connection');
-//     }
-// });
 
 // BOOKINGS - READ JSON
 
