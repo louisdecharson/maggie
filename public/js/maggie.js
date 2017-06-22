@@ -1,44 +1,27 @@
 function fontResize(elem,factor) {
-    var fontsize = (parseFloat(elem.css('font-size'))*factor).toString()+'px';
-    elem.css('font-size',fontsize);
+    // var fontsize = (parseFloat(elem.css('font-size'))*factor).toString()+'px';
+    // elem.css('font-size',fontsize);
 }
 
 $(document).ready(function(){
-
-    var wd = $(window).width();
-    console.log('wd: ',wd);
-    if (wd < 800) {
-        fontResize($('#tudobem-title'),wd/800);
-        fontResize($('#tudobem-menu'),wd/800);
-        fontResize($('.paragraph'),wd/800);
-    }
-    
+ 
     var sum=0;
-    $('#tudobem-menu li').each( function(){ sum += $(this).outerWidth(true); });
-    $('#tudobem-menu').width(sum);
+    $('#tudobem-menu li').each( function(){ sum += $(this).width(); console.log($(this).width()); });
+    $('#tudobem-menu ul').css('width');
     $('.tudobem-center').each(function(index) {
-        var w = -$(this).outerWidth(true)/2;
-        console.log('outerWidth: ',$(this).outerWidth(true));
-        console.log('width ',$(this).width());
+        var w = -$(this).outerWidth(true)/2;;
         $(this).css({'margin-left': w });
     });
 
     $(window).resize(function() {
-        var wd = $(window).width();
-        console.log(wd);
-        if (wd < 800) {
-            fontResize($('#tudobem-title'),wd/800);
-            fontResize($('#tudobem-menu'),wd/800);
-            fontResize($('.paragraph'),wd/800);
-        }
-        
         var sum=0;
-        $('#tudobem-menu li').each( function(){ sum += $(this).outerWidth(true); });
-        $('#tudobem-menu').width(sum);
+        $('#tudobem-menu li').each( function(){ sum += $(this).width(); console.log($(this).width()); });
+        $('#tudobem-menu ul').css('width');
         $('.tudobem-center').each(function(index) {
-            var w = -$(this).width()/2;
+            var w = -$(this).width()/2;;
             $(this).css({'margin-left': w });
         });
+        
     }).resize();
 
     $('#tudobem-click-about').click(function(){
@@ -46,7 +29,7 @@ $(document).ready(function(){
             $('#tudobem-about').show();
             $('#tudobem-dates').hide();
             $('#tudobem-about').width(sum);
-            $('#tudobem-about').css({'margin-left': -sum/2 });
+            $('#tudobem-about').css({'margin-left': -(1.15*sum)/2 });
             $(this).removeClass('hidden');
             $(this).addClass('shown');
             $('#tudobem-click-dates').addClass('hidden');
@@ -62,7 +45,7 @@ $(document).ready(function(){
             $('#tudobem-dates').show();
             $('#tudobem-about').hide();
             $('#tudobem-dates').width(sum);
-            $('#tudobem-dates').css({'margin-left': -sum/2 });
+            $('#tudobem-dates').css({'margin-left': -1.15*sum/2 });
             $(this).removeClass('hidden');
             $(this).addClass('shown');
             $('#tudobem-click-about').addClass('hidden');
