@@ -138,7 +138,8 @@ p {
 #addbooking{
     background-color: rgba(188,194,198,0.5);
     padding: 1%;
-    min-width: 30vw;
-    width: 50%;
+    max-width:100% !important;
+    min-width: 50% !important;
+    width: 100vw;
 }
 
