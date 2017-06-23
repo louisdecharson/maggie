@@ -135,3 +135,10 @@ p {
     width: 300px;
     padding: 20px;
 }
+#addbooking{
+    background-color: rgba(188,194,198,0.5);
+    padding: 1%;
+    min-width: 30vw;
+    width: 50%;
+}
+
