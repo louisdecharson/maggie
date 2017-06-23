@@ -7,11 +7,11 @@ const express = require('express'),
       favicon = require('serve-favicon'),
       fs = require('fs'),
       session = require('express-session'),
-      sha256 = require('sha256'),
+      sha3 = require('crypto-js/sha3'),
+      randomstring = require("randomstring"),
       bodyParser = require('body-parser');
 
 var bookings = require('./public/json/bookings.json');
-
 // APP
 const app = express();
 
@@ -25,6 +25,7 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/public',express.static(path.join(__dirname, 'public')));
+app.use('/bower_components',express.static(path.join(__dirname, 'bower_components')));
 
 // use session
 app.use(session({
@@ -43,25 +44,26 @@ app.use(function (req, res, next) {
     if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
     next();
 });
-
 var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
 });
-
 // -----------------------------------------------------------------------------
 
 // FUNCTIONS
 // authentication
-function authenticate(name,pass,callback) {
-    if (name != myUser) {
+function authenticate(client_data,server_rnd,callback) {
+    if (client_data.username != myUser) {
         console.log('cannot find user');
         return callback(new Error('cannot find user'));
     } else  {
-        if (sha256.x2(pass) != myPass) {
+        if (client_data.hash !== sha3(myPass+client_data.rnd+server_rnd).toString()) {
+            console.log('client_data',client_data);
+            console.log('server_rnd: ',server_rnd);
+            console.log('server',sha3(myPass+client_data.rnd+server_rnd).toString());
             return callback(new Error('invalid password'));
         } else {
-            return callback(null,name);
+            return callback(null,client_data.username);
         }
     }
 }
@@ -86,7 +88,6 @@ function cleaner(arr, id, callback) {
         found = false;
     while (i<arr.length && !found){
         var cur = arr[i];
-        console.log(arr[i].timestamp,id);
         if (cur.timestamp === id) {
             arr.splice(i,1);
             found = true;
@@ -100,17 +101,18 @@ function cleaner(arr, id, callback) {
 }
 
 // -----------------------------------------------------------------------------
-
 // ROUTES
+var server_rnd = '';
 app.get('/',function(req,res) {
     sortBookings();
     res.render('index',{bookings:bookings['Bookings']});
 });
 app.get('/login',function(req,res){
-    res.render('login');
+    server_rnd = randomstring.generate();
+    res.render('login',{server_rnd:server_rnd});
 });
 app.post('/login',function(req,res) {
-    authenticate(req.body.username, req.body.password, function(err,user) {
+    authenticate(req.body,server_rnd,function(err,user) {
         if (user) {
             req.session.regenerate(function() {
                 req.session.user = user;
@@ -119,7 +121,7 @@ app.post('/login',function(req,res) {
             });
         } else {
             req.session.error = 'Authentication failed';
-            console.log('error');
+            console.log('incorrect password or username');
             res.redirect('/login');
         }       
     });

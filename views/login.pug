@@ -1,15 +1,40 @@
 extends layout
 
 block content
-        div(class='login')
+        div(class='login tudobem-center')
                           center
                                   h2 Login
                                   hr
-                          form(action='login' method='POST' enctype='application/json')
+                          form(action='login' id='loginForm' method='POST' enctype='application/json')
                                   div(class='form-group')
                                           label(for='id') Nom d'utilisateur
                                           input(type='text' class='form-control' placeholder='Nom' name='username')
-                                  div(class='form-group')
+                                  div(class='form-group' id='passw-div')
                                           label(for='password') Mot de passe
                                           input(type='password' class='form-control' id='password' placeholder='Mot de passe' name='password')
                                   button(type="submit" class="btn btn-primary") Login
+block scripts
+        script(type='text/javascript' src='/bower_components/crypto-js/crypto-js.js')
+        script(type='text/javascript' src='/public/js/maggie.js')
+        script.
+                function addHidden(theForm, key, value) {
+                        var input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = value;
+                        console.log(value);
+                        theForm.appendChild(input);
+                }
+                $('#loginForm').submit(function(ev) {
+                        ev.preventDefault();
+                        var passw = CryptoJS.SHA3($('#password').val()).toString();
+                        $(this).children('#passw-div').children('#password').remove();
+                        var rnd = Math.random().toString(36);
+                        var server_rnd = !{JSON.stringify(server_rnd)};
+                        console.log(server_rnd);
+                        console.log(passw);
+                        addHidden(this, 'rnd', rnd);
+                        addHidden(this, 'hash', CryptoJS.SHA3(passw+rnd+server_rnd).toString());
+                        this.submit();
+                });
+
