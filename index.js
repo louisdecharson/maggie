@@ -58,9 +58,6 @@ function authenticate(client_data,server_rnd,callback) {
         return callback(new Error('cannot find user'));
     } else  {
         if (client_data.hash !== sha3(myPass+client_data.rnd+server_rnd).toString()) {
-            console.log('client_data',client_data);
-            console.log('server_rnd: ',server_rnd);
-            console.log('server',sha3(myPass+client_data.rnd+server_rnd).toString());
             return callback(new Error('invalid password'));
         } else {
             return callback(null,client_data.username);
